@@ -1,0 +1,27 @@
+{
+	"name": "minutemailer/api",
+	"description": "Minutemailer API PHP wrapper",
+	"license": "MIT",
+	"keywords": ["minutemailer", "api", "php", "marketing", "email"],
+	"authors": [
+		{
+			"name": "Tobias Bleckert",
+			"email": "tobias@minutemailer.com"
+		},
+		{
+			"name": "Carlos Arias",
+			"email": "carlos@minutemailer.com"
+		}
+	],
+	"require": {
+		"guzzlehttp/guzzle": "^6.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "4.0.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Minutemailer\\": "src/Minutemailer"
+		}
+	}
+}
