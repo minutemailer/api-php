@@ -1,8 +1,8 @@
 Minutemailer API BETA
 ======================
-These instructions are specifically for PHP. We will soon add general instructions in order to use the Minutemailer API.
+These instructions are specifically for PHP. We'll add more general instructions soon in order to use the Minutemailer API.
 
-Do you have any questions or comments? Are you perhaps interested in trying out the Minutemailer API? Contact us at <hello@minutemailer.com> and we'll get back to you.
+Any questions or comments? Maybe you’re interested in trying out the Minutemailer API? Contact us at <hello@minutemailer.com> and we'll get back to you.
 
 Installation
 ------------
