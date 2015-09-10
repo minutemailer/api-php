@@ -19,7 +19,7 @@ require 'vendor/autoload.php';
 
 $clientId = 'ThisIsMyId';
 $clientSecret = '123456789asdf';
-$client = new Minutemailer($clientId, $clientSecret);
+$client = new Minutemailer\Minutemailer($clientId, $clientSecret);
 
 // Data required
 $contactListToken = 'asdf123';
