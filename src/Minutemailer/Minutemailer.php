@@ -41,11 +41,30 @@ class Minutemailer
 			$this->accessToken = $json->access_token;
 		}
 	}
+	
+	public function contactLists($token = null)
+	{
+		$this->currentEndpoint = '/contactlists';
+		
+		if ($token) {
+			$this->currentEndpoint += '/' . $token;
+		}
+		
+		return $this;
+	}
 
 	public function subscribe($token)
 	{
 		$this->currentEndpoint = '/subscribe/' . $token;
 		return $this;
+	}
+	
+	public function get($query = [])
+	{
+		$response = $this->client->get('/' . $this->version . $this->currentEndpoint, ['query' => $query]);
+		$response = json_decode($response->getBody());
+
+		return $response;
 	}
 
 	public function post($data)
