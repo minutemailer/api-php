@@ -15,20 +15,16 @@ Make sure the file is loaded, either by `require 'vendor/autoload.php'` if you a
 
 ```php
 <?php
+
 require 'vendor/autoload.php';
 
-$clientId = 'ThisIsMyId';
-$clientSecret = '123456789asdf';
-$client = new Minutemailer\Minutemailer($clientId, $clientSecret);
+$personalAccessToken = 'myAccessToken';
 
-// Data required
-$contactListToken = 'asdf123';
-$postData = [
-  'name'  => 'Firstname Lastname',
-  'email' => 'validemail@domain.com'
-];
-
-$response = $client->subscribe($contactListToken)->post($postData);
+$client = new Minutemailer\Minutemailer($personalAccessToken);
+$response = $client->contact_lists('123abc')->subscribe([
+    'name'  => 'Firstname Lastname',
+    'email' => 'validemail@domain.com'
+]);
 ```
 
-Please note that both name and email are required. `$response` will be filled with the contact data if the request is valid. Otherwise, an error will be returned.
+Email is required and name is optional. `$response` will be filled with the contact data if the request is valid. Otherwise, an error will be returned.
