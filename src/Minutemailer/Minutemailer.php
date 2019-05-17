@@ -14,7 +14,7 @@ class Minutemailer
 
     public function __construct($personalAccessToken)
     {
-        $this->baseUrl = 'http://api.minutemailer.test';
+        $this->baseUrl = 'https://api.minutemailer.com';
         $this->version = 'v1';
         $this->personalAccessToken = $personalAccessToken;
         $this->client = new Client([
