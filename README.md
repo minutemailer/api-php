@@ -1,8 +1,8 @@
-Minutemailer API BETA
+Minutemailer API PHP Library
 ======================
-These instructions are specifically for PHP. We'll add more general instructions soon in order to use the Minutemailer API.
+This library allows you to quickly get started with the Minutemailer API via PHP. Libraries for other languages will come soon.
 
-Any questions or comments? Maybe you’re interested in trying out the Minutemailer API? Contact us at <hello@minutemailer.com> and we'll get back to you.
+Before you get started, read the [API documentation](http://minutemailer.com/api).
 
 Installation
 ------------
@@ -11,6 +11,8 @@ or download the php-file [Minutemailer.php](https://github.com/minutemailer/api/
 
 Usage
 -----
+First you need to create an API token. You can do so by logging in to your Minutemailer account and go to the [API settings page](https://app.minutemailer.com/u/settings/api).
+
 Make sure the file is loaded, either by `require 'vendor/autoload.php'` if you are using composer or `require 'path/Minutemailer.php'` if you are not.
 
 ```php
