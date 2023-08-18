@@ -4,12 +4,28 @@ namespace Minutemailer;
 
 class RestAPI
 {
+    /**
+     * @var string
+     */
     public $endpoint;
+    /**
+     * @var object
+     */
     public $client;
+    /**
+     * @var string
+     */
     public $id;
+    /**
+     * @var string
+     */
     public $segment;
 
-    public function __construct($client, $id = null)
+    /**
+     * @param object $client
+     * @param string $id
+     */
+    public function __construct($client, $id = '')
     {
         $this->client = $client;
         $this->id = $id;
@@ -19,11 +35,11 @@ class RestAPI
     {
         $endpoint = $this->endpoint;
 
-        if ($this->id) {
+        if (strlen($this->id) > 0) {
             $endpoint .= '/' . $this->id;
         }
 
-        if ($this->segment) {
+        if (strlen($this->segment) > 0) {
             $endpoint .= '/' . $this->segment;
         }
 
@@ -33,13 +49,13 @@ class RestAPI
     /**
      * Get resource
      * @param  array  $query
-     * @return GuzzleHttp\Psr7\Response
+     * @return mixed
      */
-    public function get($query = [])
+    public function get($query = array())
     {
         $endpoint = $this->getEndpoint();
 
-        $response = $this->client->get($endpoint, ['query' => $query]);
+        $response = $this->client->get($endpoint, array('query' => $query));
         $response = json_decode($response->getBody());
 
         return $response;
@@ -48,15 +64,68 @@ class RestAPI
     /**
      * Post data
      * @param  array  $data
-     * @return GuzzleHttp\Psr7\Response
+     * @return mixed
      */
-    public function post($data = [])
+    public function post($data = array())
     {
         $endpoint = $this->getEndpoint();
 
-        $response = $this->client->post($endpoint, ['form_params' => $data]);
+        $response = $this->client->post($endpoint, array('json' => $data));
         $response = json_decode($response->getBody());
 
         return $response;
+    }
+
+    /**
+     * Delete data
+     * @param  array  $data
+     * @return mixed
+     */
+    public function delete($data = array())
+    {
+        $endpoint = $this->getEndpoint();
+
+        $response = $this->client->delete($endpoint, array('json' => $data));
+        $response = json_decode($response->getBody());
+
+        return $response;
+    }
+
+    /**
+     * @param  mixed  $data
+     * @return mixed
+     */
+    public function put($data = array())
+    {
+        $endpoint = $this->getEndpoint();
+
+        $response = $this->client->put($endpoint, array('json' => $data));
+        $response = json_decode($response->getBody());
+
+        return $response;
+    }
+
+    /**
+     * @param  array  $data
+     * @return mixed
+     */
+    public function getWithBody($data = array())
+    {
+        $endpoint = $this->getEndpoint();
+
+        $response = $this->client->request('get', $endpoint, array('json' => $data));
+        $response = json_decode($response->getBody());
+
+        return $response;
+    }
+
+    /**
+     * @param  string  $method
+     * @param  string  $replacedBy
+     * @return void
+     */
+    protected function deprecated($method, $replacedBy)
+    {
+        trigger_error($method.' is replaced by '.$replacedBy, E_USER_DEPRECATED);
     }
 }
