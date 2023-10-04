@@ -23,10 +23,17 @@ require 'vendor/autoload.php';
 $personalAccessToken = 'myAccessToken';
 
 $client = new Minutemailer\Minutemailer($personalAccessToken);
-$response = $client->contact_lists('123abc')->subscribe([
-    'name'  => 'Firstname Lastname',
-    'email' => 'validemail@domain.com'
-]);
+
+// Create new contact and add it to list
+$response = $client->contacts()->create('validemail@domain.com', ['first_name' => 'Firstname', 'last_name' => 'Lastname'], ['123abc']);
+
+$contact_id = $response->id;
+
+// Add existing contact to list
+$response = $client->contact_lists('123abc')->addContact($contact_id);
+
+// Resubscribe unsubscribed contact
+$response = $client->contacts($contact_id)->update(['status' => 1]);
 ```
 
 Email is required and name is optional. `$response` will be filled with the contact data if the request is valid. Otherwise, an error will be returned.
